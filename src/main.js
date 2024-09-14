@@ -7,6 +7,11 @@ const input = document.querySelector('.search-input');
 const searchBtn = document.querySelector('.search-btn');
 const gallery = document.getElementById('gallery');
 
+const lightbox = new SimpleLightbox('.gallery li > a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
+
 async function searchImages() {
   const loader = document.getElementById('loader');
   const q = input.value;
@@ -37,36 +42,25 @@ async function searchImages() {
 }
 
 function displayImages(images) {
-  const galleryHtml = images.reduce((acc, image) => {
-    return (
-      acc +
-      `<li class="card">
-                <a href="${image.largeImageURL}">
-                    <img src="${image.webformatURL}" alt="${image.tags}" />
-                </a>
-                <div class="info">
-                    <p class="info-text"> <b>Likes</b> ${image.likes} </p>
-                    <p class="info-text"> <b>Views</b> ${image.views} </p>
-                    <p class="info-text"> <b>Comments</b> ${image.comments} </p>
-                    <p class="info-text"> <b>Downloads</b> ${image.downloads} </p>
-                </div>
-            </li>`
-    );
-  }, '');
-
-  gallery.innerHTML = galleryHtml;
-  const linkArr = document.querySelectorAll('.gallery li > a');
-  linkArr.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      lightbox.open();
-    });
+  const galleryHtml = images.map(image => {
+    return `
+    <li class="card">
+  <a href="${image.largeImageURL}">
+    <img src="${image.webformatURL}" alt="${image.tags}" />
+  </a>
+  <div class="info">
+    <p class="info-text"><b>Likes</b> ${image.likes}</p>
+    <p class="info-text"><b>Views</b> ${image.views}</p>
+    <p class="info-text"><b>Comments</b> ${image.comments}</p>
+    <p class="info-text"><b>Downloads</b> ${image.downloads}</p>
+  </div>
+</li>
+    
+    `;
   });
 
-  const lightbox = new SimpleLightbox('.gallery li > a', {
-    captionsData: 'alt',
-    captionDelay: 250,
-  });
+  gallery.innerHTML = galleryHtml.join('');
+  lightbox.refresh();
 }
 
 searchBtn.addEventListener('click', e => {

@@ -1,0 +1,14 @@
+<li class="card">
+  <a href="${image.largeImageURL}">
+    <img src="${image.webformatURL}" alt="${image.tags}" />
+  </a>
+  <div class="info">
+    <p class="info-text"><b>Likes</b> ${image.likes}</p>
+    <p class="info-text"><b>Views</b> ${image.views}</p>
+    <p class="info-text"><b>Comments</b> ${image.comments}</p>
+    <p class="info-text"><b>Downloads</b> ${image.downloads}</p>
+  </div>
+</li>
+` const linkArr = document.querySelectorAll('.gallery li > a');
+linkArr.forEach(link => { link.addEventListener('click', e => {
+e.preventDefault(); lightbox.open(); }); });
