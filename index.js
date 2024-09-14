@@ -1,12 +1,15 @@
-import{i as c,S as l}from"./assets/vendor-5ObWk2rO.js";(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))s(t);new MutationObserver(t=>{for(const e of t)if(e.type==="childList")for(const i of e.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&s(i)}).observe(document,{childList:!0,subtree:!0});function n(t){const e={};return t.integrity&&(e.integrity=t.integrity),t.referrerPolicy&&(e.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?e.credentials="include":t.crossOrigin==="anonymous"?e.credentials="omit":e.credentials="same-origin",e}function s(t){if(t.ep)return;t.ep=!0;const e=n(t);fetch(t.href,e)}})();const d=document.querySelector(".search-input"),u=document.querySelector(".search-btn"),a=document.getElementById("gallery");async function f(){const r=document.getElementById("loader"),s=`https://pixabay.com/api/?key=45978686-70839b27c443bdf6e9ef42e3a&q=${d.value}&image_type=photo&orientation=horizontal&safeSearch=true`;try{a.innerHTML="",r.classList.remove("hidden");const e=await(await fetch(s)).json();e.hits.length===0?c.error({title:"",message:'"Sorry, there are no images matching your search query. Please try again!"',position:"topRight"}):p(e.hits)}catch(t){console.error("Hata:",t)}finally{r.classList.add("hidden")}}function p(r){const o=r.reduce((t,e)=>t+`<li class="card">
-                <a href="${e.largeImageURL}">
-                    <img src="${e.webformatURL}" alt="${e.tags}" />
-                </a>
-                <div class="info">
-                    <p class="info-text"> <b>Likes</b> ${e.likes} </p>
-                    <p class="info-text"> <b>Views</b> ${e.views} </p>
-                    <p class="info-text"> <b>Comments</b> ${e.comments} </p>
-                    <p class="info-text"> <b>Downloads</b> ${e.downloads} </p>
-                </div>
-            </li>`,"");a.innerHTML=o,document.querySelectorAll(".gallery li > a").forEach(t=>{t.addEventListener("click",e=>{e.preventDefault(),s.open()})});const s=new l(".gallery li > a",{captionsData:"alt",captionDelay:250})}u.addEventListener("click",r=>{r.preventDefault(),f()});
+import{S as c,i as l}from"./assets/vendor-5ObWk2rO.js";(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))n(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const i of t.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&n(i)}).observe(document,{childList:!0,subtree:!0});function r(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?t.credentials="include":e.crossOrigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function n(e){if(e.ep)return;e.ep=!0;const t=r(e);fetch(e.href,t)}})();const d=document.querySelector(".search-input"),f=document.querySelector(".search-btn"),a=document.getElementById("gallery"),p=new c(".gallery li > a",{captionsData:"alt",captionDelay:250});async function u(){const o=document.getElementById("loader"),n=`https://pixabay.com/api/?key=45978686-70839b27c443bdf6e9ef42e3a&q=${d.value}&image_type=photo&orientation=horizontal&safeSearch=true`;try{a.innerHTML="",o.classList.remove("hidden");const t=await(await fetch(n)).json();t.hits.length===0?l.error({title:"",message:'"Sorry, there are no images matching your search query. Please try again!"',position:"topRight"}):m(t.hits)}catch(e){console.error("Hata:",e)}finally{o.classList.add("hidden")}}function m(o){const s=o.map(r=>`
+    <li class="card">
+  <a href="${r.largeImageURL}">
+    <img src="${r.webformatURL}" alt="${r.tags}" />
+  </a>
+  <div class="info">
+    <p class="info-text"><b>Likes</b> ${r.likes}</p>
+    <p class="info-text"><b>Views</b> ${r.views}</p>
+    <p class="info-text"><b>Comments</b> ${r.comments}</p>
+    <p class="info-text"><b>Downloads</b> ${r.downloads}</p>
+  </div>
+</li>
+    
+    `);a.innerHTML=s.join(""),p.refresh()}f.addEventListener("click",o=>{o.preventDefault(),u()});
 //# sourceMappingURL=index.js.map
