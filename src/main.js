@@ -16,7 +16,7 @@ async function searchImages() {
   const loader = document.getElementById('loader');
   const q = input.value;
   const apiKey = '45978686-70839b27c443bdf6e9ef42e3a';
-  const url = `https://pixabay.com/api/?key=${apiKey}&q=${q}&image_type=photo&orientation=horizontal&safeSearch=true`;
+  const url = `https://pixabay.com/api/?key=${apiKey}&q=${q}&image_type=photo&orientation=horizontal&safesearch=true`;
 
   try {
     gallery.innerHTML = '';
@@ -28,7 +28,7 @@ async function searchImages() {
       iziToast.error({
         title: '',
         message:
-          '"Sorry, there are no images matching your search query. Please try again!"',
+          'Sorry, there are no images matching your search query. Please try again!',
         position: 'topRight',
       });
     } else {
