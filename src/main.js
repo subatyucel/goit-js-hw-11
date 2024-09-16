@@ -6,6 +6,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 const input = document.querySelector('.search-input');
 const searchBtn = document.querySelector('.search-btn');
 const gallery = document.getElementById('gallery');
+const form = document.querySelector('.search-form');
 
 const lightbox = new SimpleLightbox('.gallery li > a', {
   captionsData: 'alt',
@@ -63,7 +64,8 @@ function displayImages(images) {
   lightbox.refresh();
 }
 
-searchBtn.addEventListener('click', e => {
+//bilgileriniz için teşekkürler hocam
+form.addEventListener('submit', e => {
   e.preventDefault();
 
   searchImages();
